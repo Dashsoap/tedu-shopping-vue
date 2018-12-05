@@ -29,6 +29,9 @@
 </template>
 
 <script>
+import Axios from "axios";
+import Cookie from "js-cookie";
+
 export default {
     data() {
         return {
@@ -57,12 +60,23 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.$refs.form.validate(result => {
+            this.$refs.form.validate(async result => {
                 /** 表单验证成功 */
                 if (result) {
                     this.loading++;
-                    // Body...
-                    this.loading--;
+                    try {
+                        const { data } = await Axios.post(
+                            "/api/login",
+                            this.form
+                        );
+                        /** 将token存入cookie内 */
+                        Cookie.set("token", data.token);
+                        this.$router.push("/");
+                    } catch ({ response }) {
+                        this.$message.error(response.data.message);
+                    } finally {
+                        this.loading--;
+                    }
                 }
             });
         }
