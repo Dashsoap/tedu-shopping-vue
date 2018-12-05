@@ -2,6 +2,7 @@
     <div id="app">
         <my-header class="header"></my-header>
         <router-view class="my-body"></router-view>
+        <vue-progress-bar></vue-progress-bar>
     </div>
 </template>
 
@@ -12,6 +13,20 @@ export default {
     name: "app",
     components: {
         MyHeader
+    },
+    created() {
+        this.$router.beforeEach((to, from, next) => {
+            //  does the page we want to go to have a meta.progress object
+            //  start the progress bar
+            this.$Progress.start();
+            //  continue to next page
+            next();
+        });
+        //  hook the progress bar to finish after we've finished moving router-view
+        this.$router.afterEach((to, from) => {
+            //  finish the progress bar
+            this.$Progress.finish();
+        });
     }
 };
 </script>
