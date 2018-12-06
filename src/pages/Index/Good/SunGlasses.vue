@@ -1,17 +1,12 @@
 <template>
-    <div class="container" :style="`background:${background}`">
+    <div class="container">
         <h1>长者之风</h1>
         <h2>引领 2019 墨镜潮流</h2>
     </div>
 </template>
 
 <script>
-import background from "@/assets/glasses-background.jpg";
-export default {
-    mounted() {
-        console.log(background);
-    }
-};
+export default {};
 </script>
 
 <style lang='stylus' scoped>
