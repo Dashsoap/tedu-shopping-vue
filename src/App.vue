@@ -15,11 +15,15 @@ export default {
         MyHeader
     },
     created() {
-        this.$router.beforeEach((to, from, next) => {
+        store.dispatch("login");
+        this.$router.beforeEach(async (to, from, next) => {
             //  does the page we want to go to have a meta.progress object
             //  start the progress bar
             this.$Progress.start();
             //  continue to next page
+            /** 检测用户登录状态 */
+            await store.dispatch("login");
+
             next();
         });
         //  hook the progress bar to finish after we've finished moving router-view
@@ -27,9 +31,6 @@ export default {
             //  finish the progress bar
             this.$Progress.finish();
         });
-
-        /** 检测用户登录状态 */
-        store.dispatch("login");
     }
 };
 </script>
@@ -61,5 +62,9 @@ a {
 
 .mt-3 {
     margin-top: 30px;
+}
+
+.ml-2 {
+    margin-left: 20px;
 }
 </style>
