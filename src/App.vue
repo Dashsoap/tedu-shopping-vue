@@ -8,7 +8,7 @@
 
 <script>
 import MyHeader from "./components/Header/Header";
-
+import store from "./store";
 export default {
     name: "app",
     components: {
@@ -27,6 +27,9 @@ export default {
             //  finish the progress bar
             this.$Progress.finish();
         });
+
+        /** 检测用户登录状态 */
+        store.dispatch("login");
     }
 };
 </script>
