@@ -8,23 +8,22 @@
 
 <script>
 import MyHeader from "./components/Header/Header";
-import store from "./store";
 export default {
     name: "app",
     components: {
         MyHeader
     },
     created() {
-        store.dispatch("login");
+        this.$store.dispatch("login");
         this.$router.beforeEach(async (to, from, next) => {
             //  does the page we want to go to have a meta.progress object
             //  start the progress bar
             this.$Progress.start();
             //  continue to next page
             /** 检测用户登录状态 */
-            await store.dispatch("login");
-
             next();
+
+            await this.$store.dispatch("login");
         });
         //  hook the progress bar to finish after we've finished moving router-view
         this.$router.afterEach((to, from) => {

@@ -20,7 +20,7 @@ export default {
         onClick(command) {
             switch (command) {
                 case "editAddress":
-                    this.$router.push("/edit/address");
+                    this.$router.push("/address");
                     break;
                 case "logout":
                     this.$store.dispatch("logout");

@@ -28,7 +28,4 @@ const store = new Vuex.Store({
 	},
 });
 
-/** 注入Vue实例 */
-Vue.prototype.$store = store;
-
 export default store;

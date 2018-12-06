@@ -1,26 +1,32 @@
-import VueRouter from 'vue-router';
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 import Index from './pages/Index/Index';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register'
 
-export default new VueRouter({
-  routes: [{
-      path: '/',
-      name: 'index',
-      component: Index
-    },
-    {
-      path:'/login',
-      name:'login',
-      component: Login
+Vue.use(VueRouter);
 
-    },
-    {
-      path:'/register',
-      name:'register',
-      component:Register
-    },
-    
-  ]
-})
+const router = new VueRouter({
+	routes: [
+		{
+			path: '/',
+			name: 'index',
+			component: Index,
+		},
+		{
+			path: '/login',
+			name: 'login',
+			component: () => import('./pages/Login/Login.vue'),
+		},
+		{
+			path: '/register',
+			name: 'register',
+			component: () => import('./pages/Register/Register.vue'),
+		},
+		{
+			path: '/address',
+			name: 'address',
+			component: () => import('./pages/Address/Address.vue'),
+		},
+	],
+});
+
+export default router;

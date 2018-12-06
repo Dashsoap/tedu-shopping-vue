@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import store from "../../store";
 import UserInfo from "./UserInfo";
 export default {
     components: {
@@ -43,9 +42,6 @@ export default {
             const nameList = ["login", "register"];
             return !nameList.includes(this.$route.name);
         },
-        me() {
-            return store.state.me;
-        }
     }
 };
 </script>

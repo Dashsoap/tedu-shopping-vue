@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import VueRouter from 'vue-router';
+import store from './store';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faShoppingCart, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import ElementUI from 'element-ui';
 import './theme/index.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VueProgressBar from 'vue-progressbar';
 
-library.add(faSearch, faShoppingCart);
+library.add(faSearch, faShoppingCart, faAddressCard);
 Vue.config.productionTip = false;
 
 const options = {
@@ -25,9 +25,9 @@ const options = {
 
 Vue.use(VueProgressBar, options);
 Vue.use(ElementUI);
-Vue.use(VueRouter);
 Vue.component('fa-icon', FontAwesomeIcon);
 new Vue({
 	router,
+	store,
 	render: (h) => h(App),
 }).$mount('#app');
