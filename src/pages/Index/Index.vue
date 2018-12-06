@@ -1,20 +1,21 @@
 <template>
-    <div>hello</div>
+    <div>
+        <sun-glasses></sun-glasses>
+        <glasses></glasses>
+    </div>
 </template>
 
 <script>
 import Axios from "axios";
+import Glasses from "./Good/Glasses";
+import SunGlasses from "./Good/SunGlasses";
 export default {
-    async beforeCreate() {
-        try {
-            const { data } = await Axios.get("/api/me");
-            console.log(data);
-        } catch ({ response }) {
-            console.log(response);
-        }
-    }
+    components: {
+        Glasses,
+        SunGlasses
+    },
 };
 </script>
 
-<style scoped>
+<style lang='stylus' scoped>
 </style>

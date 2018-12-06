@@ -8,19 +8,22 @@
 
 <script>
 import MyHeader from "./components/Header/Header";
-
 export default {
     name: "app",
     components: {
         MyHeader
     },
     created() {
-        this.$router.beforeEach((to, from, next) => {
+        this.$store.dispatch("login");
+        this.$router.beforeEach(async (to, from, next) => {
             //  does the page we want to go to have a meta.progress object
             //  start the progress bar
             this.$Progress.start();
             //  continue to next page
+            /** 检测用户登录状态 */
             next();
+
+            await this.$store.dispatch("login");
         });
         //  hook the progress bar to finish after we've finished moving router-view
         this.$router.afterEach((to, from) => {
@@ -35,7 +38,6 @@ export default {
 @import '/assets/theme.styl';
 
 html {
-    box-sizing: border-box;
     font-size: 16px;
 }
 
@@ -59,5 +61,9 @@ a {
 
 .mt-3 {
     margin-top: 30px;
+}
+
+.ml-2 {
+    margin-left: 20px;
 }
 </style>

@@ -8,14 +8,26 @@
             <el-form ref="form" :model="form" :rules="rules">
                 <el-form-item prop="username">
                     <span>用户名</span>
-                    <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
+                    <el-input
+                        autofocus
+                        tabindex="1"
+                        v-model="form.username"
+                        placeholder="请输入用户名"
+                        @keyup.native.enter="onSubmit"
+                    ></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-row type="flex" justify="space-between">
                         <span>密码</span>
                         <router-link to="/forget/password">忘记密码</router-link>
                     </el-row>
-                    <el-input type="password" v-model="form.password" placeholder="请输入密码"></el-input>
+                    <el-input
+                        tabindex="2"
+                        type="password"
+                        v-model="form.password"
+                        placeholder="请输入密码"
+                        @keyup.native.enter="onSubmit"
+                    ></el-input>
                 </el-form-item>
                 <el-button :loading="loading>0" type="primary" round @click="onSubmit">立即登录</el-button>
             </el-form>

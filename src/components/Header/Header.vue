@@ -13,13 +13,24 @@
             <el-button type="primary" round @click="handleCartClick">购物车
                 <fa-icon icon="shopping-cart"></fa-icon>
             </el-button>
-            <el-button @click="$router.push({name:'login'})" type="primary" plain round>登录</el-button>
+            <el-button
+                v-if="!$store.state.me"
+                @click="$router.push({name:'login'})"
+                type="primary"
+                plain
+                round
+            >登录</el-button>
+            <user-info class="ml-2" v-else></user-info>
         </div>
     </nav>
 </template>
 
 <script>
+import UserInfo from "./UserInfo";
 export default {
+    components: {
+        UserInfo
+    },
     data() {
         return {};
     },
@@ -30,7 +41,7 @@ export default {
         isVisible() {
             const nameList = ["login", "register"];
             return !nameList.includes(this.$route.name);
-        }
+        },
     }
 };
 </script>
