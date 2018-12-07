@@ -39,8 +39,6 @@ export default {
                         `用户: ${res.data.username}注册成功!`
                     );
                     this.$router.push("/login");
-                    // 服务端返回错误原因
-                    this.$notify.error(response.data.message);
                     this.loading--;
                 }
             });

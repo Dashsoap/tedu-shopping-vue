@@ -41,7 +41,7 @@ export default {
             /** 检测用户登录状态 */
         });
         //  hook the progress bar to finish after we've finished moving router-view
-        this.$router.afterEach((to, from) => {
+        this.$router.afterEach(() => {
             //  finish the progress bar
             this.$Progress.finish();
         });

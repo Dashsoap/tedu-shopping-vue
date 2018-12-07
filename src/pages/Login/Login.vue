@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import Axios from "axios";
 import Cookie from "js-cookie";
 
 export default {

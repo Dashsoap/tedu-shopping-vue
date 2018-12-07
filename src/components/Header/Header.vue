@@ -10,9 +10,7 @@
             <fa-icon icon="search"></fa-icon>
         </div>
         <div id="button-group">
-            <el-button type="primary" round @click="handleCartClick">购物车
-                <fa-icon icon="shopping-cart"></fa-icon>
-            </el-button>
+            <cart></cart>
             <el-button
                 v-if="!$store.state.me"
                 @click="$router.push({name:'login'})"
@@ -27,15 +25,18 @@
 
 <script>
 import UserInfo from "./UserInfo";
+import Cart from "./Cart.vue";
+
 export default {
     components: {
-        UserInfo
+        UserInfo,
+        Cart
     },
     data() {
         return {};
     },
     methods: {
-        handleCartClick() {}
+        
     },
     computed: {
         isVisible() {

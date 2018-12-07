@@ -109,7 +109,6 @@ export default {
             await Axios.delete(`/api/address/${item._id}`);
             _.remove(this.list, n => n._id === item._id);
             this.$message.success("地址删除成功");
-            this.$message.error(response.data.message);
             item.deleteLoading--;
         }
     }
