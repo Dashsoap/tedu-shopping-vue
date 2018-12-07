@@ -76,19 +76,15 @@ export default {
                 /** 表单验证成功 */
                 if (result) {
                     this.loading++;
-                    try {
-                        const { data } = await Axios.post(
+                        const { data } = await this.$axios.post(
                             "/api/login",
                             this.form
                         );
                         /** 将token存入cookie内 */
                         Cookie.set("token", data.token);
                         this.$router.push("/");
-                    } catch ({ response }) {
-                        this.$message.error(response.data.message);
-                    } finally {
                         this.loading--;
-                    }
+                    
                 }
             });
         }

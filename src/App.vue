@@ -15,15 +15,15 @@ export default {
     },
     created() {
         this.$store.dispatch("login");
-        this.$router.beforeEach(async (to, from, next) => {
+        this.$router.beforeEach((to, from, next) => {
             //  does the page we want to go to have a meta.progress object
             //  start the progress bar
             this.$Progress.start();
             //  continue to next page
             /** 检测用户登录状态 */
-            next();
-
-            await this.$store.dispatch("login");
+            this.$store.dispatch("login").then(() => {
+                next();
+            });
         });
         //  hook the progress bar to finish after we've finished moving router-view
         this.$router.afterEach((to, from) => {

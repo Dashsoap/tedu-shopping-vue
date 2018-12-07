@@ -83,26 +83,19 @@ export default {
             if (address._id) {
                 const _id = address._id;
                 delete address._id;
-                try {
-                    this.editLoading++;
-                    await Axios.put(`/api/address/${_id}`, address);
-                    this.$message.success("修改地址成功");
-                } catch ({ response }) {
-                    this.$message.error(response.data.message);
-                } finally {
-                    this.editLoading--;
-                }
+                this.editLoading++;
+                await this.$axios.put(`/api/address/${_id}`, address);
+                this.$message.success("修改地址成功");
+                this.editLoading--;
             } else {
-                try {
-                    this.createLoading++;
-                    const { data } = await Axios.post("/api/address", address);
-                    this.list.push(data);
-                    this.$message.success("新增地址成功");
-                } catch ({ response }) {
-                    this.$message.error(response.data.message);
-                } finally {
-                    this.createLoading--;
-                }
+                this.createLoading++;
+                const { data } = await this.$axios.post(
+                    "/api/address",
+                    address
+                );
+                this.list.push(data);
+                this.$message.success("新增地址成功");
+                this.createLoading--;
             }
         },
         onSelectAddress(item) {
@@ -112,16 +105,12 @@ export default {
             this.editForm = null;
         },
         async onDelete(item) {
-            try {
-                item.deleteLoading++;
-                await Axios.delete(`/api/address/${item._id}`);
-                _.remove(this.list, n => (n._id === item._id));
-                this.$message.success("地址删除成功");
-            } catch ({ response }) {
-                this.$message.error(response.data.message);
-            } finally {
-                item.deleteLoading--;
-            }
+            item.deleteLoading++;
+            await Axios.delete(`/api/address/${item._id}`);
+            _.remove(this.list, n => n._id === item._id);
+            this.$message.success("地址删除成功");
+            this.$message.error(response.data.message);
+            item.deleteLoading--;
         }
     }
 };
