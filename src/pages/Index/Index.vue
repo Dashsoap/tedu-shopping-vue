@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import Axios from "axios";
 import Glasses from "./Good/Glasses";
 import SunGlasses from "./Good/SunGlasses";
 export default {

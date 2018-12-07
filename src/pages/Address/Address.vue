@@ -33,7 +33,6 @@
                 </el-col>
                 <el-col :span="18">
                     <my-form
-                        ref="form"
                         v-loading="editLoading>0"
                         v-if="editForm"
                         :form="editForm"
@@ -59,6 +58,9 @@ import _ from "lodash";
 export default {
     components: {
         myForm
+    },
+    beforeCreate(){
+        document.title = '收货地址管理 | 膜法商城'
     },
     data() {
         return {
@@ -109,7 +111,6 @@ export default {
             await Axios.delete(`/api/address/${item._id}`);
             _.remove(this.list, n => n._id === item._id);
             this.$message.success("地址删除成功");
-            this.$message.error(response.data.message);
             item.deleteLoading--;
         }
     }

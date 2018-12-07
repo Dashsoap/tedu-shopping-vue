@@ -6,7 +6,7 @@
         <el-col :span="12" class="right">
             <div class="title">
                 <h1>苟利国家生死以</h1>
-                <h1>期因祸福避趋之</h1>
+                <h1>岂因祸福避趋之</h1>
             </div>
 
             <div class="bottom">

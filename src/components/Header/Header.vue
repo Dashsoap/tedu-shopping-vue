@@ -9,14 +9,13 @@
             <input>
             <fa-icon icon="search"></fa-icon>
         </div>
-        <div id="button-group">
-            <el-button type="primary" round @click="handleCartClick">购物车
-                <fa-icon icon="shopping-cart"></fa-icon>
-            </el-button>
+        <div class="button-group">
+            <cart></cart>
             <el-button
                 v-if="!$store.state.me"
                 @click="$router.push({name:'login'})"
                 type="primary"
+                class="ml-2"
                 plain
                 round
             >登录</el-button>
@@ -27,21 +26,22 @@
 
 <script>
 import UserInfo from "./UserInfo";
+import Cart from "./Cart.vue";
+
 export default {
     components: {
-        UserInfo
+        UserInfo,
+        Cart
     },
     data() {
         return {};
     },
-    methods: {
-        handleCartClick() {}
-    },
+    methods: {},
     computed: {
         isVisible() {
-            const nameList = ["login", "register"];
+            const nameList = ["login", "register", "404"];
             return !nameList.includes(this.$route.name);
-        },
+        }
     }
 };
 </script>
@@ -99,7 +99,8 @@ nav {
 #search > input:focus + svg {
     color: #ea6f5a;
 }
-#button-group {
+.button-group {
+    display: flex;
     margin-left: auto;
 }
 </style>

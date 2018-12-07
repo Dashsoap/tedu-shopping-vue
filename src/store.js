@@ -16,10 +16,8 @@ const store = new Vuex.Store({
 	},
 	actions: {
 		async login(context) {
-			try {
-				const { data } = await Axios.get('/api/me');
-				context.commit('setMe', data);
-			} catch ({ response }) {}
+			const { data } = await Axios.get('/api/me');
+			context.commit('setMe', data);
 		},
 		logout(context) {
 			Cookie.remove('token');
