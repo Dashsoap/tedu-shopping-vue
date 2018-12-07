@@ -3,13 +3,13 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faShoppingCart, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faShoppingCart, faAddressCard, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import ElementUI from 'element-ui';
 import './theme/index.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VueProgressBar from 'vue-progressbar';
 
-library.add(faSearch, faShoppingCart, faAddressCard);
+library.add(faSearch, faShoppingCart, faAddressCard, faTimesCircle);
 Vue.config.productionTip = false;
 
 const options = {
