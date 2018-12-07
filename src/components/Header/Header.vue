@@ -9,12 +9,13 @@
             <input>
             <fa-icon icon="search"></fa-icon>
         </div>
-        <div id="button-group">
+        <div class="button-group">
             <cart></cart>
             <el-button
                 v-if="!$store.state.me"
                 @click="$router.push({name:'login'})"
                 type="primary"
+                class="ml-2"
                 plain
                 round
             >登录</el-button>
@@ -35,9 +36,7 @@ export default {
     data() {
         return {};
     },
-    methods: {
-        
-    },
+    methods: {},
     computed: {
         isVisible() {
             const nameList = ["login", "register", "404"];
@@ -100,7 +99,8 @@ nav {
 #search > input:focus + svg {
     color: #ea6f5a;
 }
-#button-group {
+.button-group {
+    display: flex;
     margin-left: auto;
 }
 </style>

@@ -87,6 +87,9 @@ export default {
                 }
             });
         }
+    },
+    beforeCreate(){
+        document.title = '登录 | 膜法商城'
     }
 };
 </script>

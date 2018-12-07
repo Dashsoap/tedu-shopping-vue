@@ -59,7 +59,9 @@ export default {
     components: {
         myForm
     },
-
+    beforeCreate(){
+        document.title = '收货地址管理 | 膜法商城'
+    },
     data() {
         return {
             loading: 0,

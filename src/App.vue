@@ -15,6 +15,7 @@ export default {
     },
     beforeCreate() {
         this.$store.dispatch("login");
+        document.title = '膜法商城'
         this.$router.beforeEach((to, from, next) => {
             //  does the page we want to go to have a meta.progress object
             //  start the progress bar

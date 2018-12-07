@@ -18,7 +18,7 @@ const router = new VueRouter({
 		},
 		{
 			path: '/register',
-			name: 'register',
+            name: 'register',
 			component: () => import('./pages/Register/Register.vue'),
 		},
 		{
