@@ -33,7 +33,6 @@
                 </el-col>
                 <el-col :span="18">
                     <my-form
-                        ref="form"
                         v-loading="editLoading>0"
                         v-if="editForm"
                         :form="editForm"
