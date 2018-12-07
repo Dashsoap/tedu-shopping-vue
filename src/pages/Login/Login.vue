@@ -83,7 +83,7 @@ export default {
                     /** 将token存入cookie内 */
                     Cookie.set("token", data.token);
                     await this.$store.dispatch("login");
-                    this.$router.push("/");
+                    this.$router.push(this.$route.query.next || "/");
                     this.loading--;
                 }
             });
