@@ -39,9 +39,9 @@ export default {
     },
     computed: {
         isVisible() {
-            const nameList = ["login", "register"];
+            const nameList = ["login", "register", "404"];
             return !nameList.includes(this.$route.name);
-        },
+        }
     }
 };
 </script>

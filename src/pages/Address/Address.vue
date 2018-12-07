@@ -60,6 +60,7 @@ export default {
     components: {
         myForm
     },
+
     data() {
         return {
             loading: 0,

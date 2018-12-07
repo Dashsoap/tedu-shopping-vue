@@ -25,6 +25,14 @@ const router = new VueRouter({
 			path: '/address',
 			name: 'address',
 			component: () => import('./pages/Address/Address.vue'),
+			meta: {
+				auth: true,
+			},
+		},
+		{
+			path: '*',
+			name: '404',
+			component: () => import('./pages/404.vue'),
 		},
 	],
 });

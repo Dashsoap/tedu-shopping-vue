@@ -13,17 +13,32 @@ export default {
     components: {
         MyHeader
     },
-    created() {
+    beforeCreate() {
         this.$store.dispatch("login");
         this.$router.beforeEach((to, from, next) => {
             //  does the page we want to go to have a meta.progress object
             //  start the progress bar
             this.$Progress.start();
+
+            /** 判断路由是否需要鉴权 */
+            if (to.meta.auth) {
+                if (!this.$store.state.me) {
+                    next({
+                        path: "login",
+                        query: {
+                            next: to.fullPath
+                        }
+                    });
+                    this.$Progress.finish();
+                } else {
+                    next();
+                }
+            } else {
+                next();
+            }
+
             //  continue to next page
             /** 检测用户登录状态 */
-            this.$store.dispatch("login").then(() => {
-                next();
-            });
         });
         //  hook the progress bar to finish after we've finished moving router-view
         this.$router.afterEach((to, from) => {
