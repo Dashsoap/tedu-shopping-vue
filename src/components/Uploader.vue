@@ -1,7 +1,7 @@
 <template>
     <div class="container" v-loading="loading>0">
         <input ref="input" type="file" accept=".jpg, .png" @input="onUpload">
-        <el-button v-if="!value" type="primary" @click="onClick">点击上传</el-button>
+        <el-button size="mini" v-if="!value" type="primary" @click="onClick">点击上传</el-button>
         <img v-else :src="value" @click="onClick">
     </div>
 </template>
@@ -68,12 +68,12 @@ input {
 img {
     cursor: pointer;
     display: inline-block;
-    width: 100%;
+    width: 200px;
     height: auto;
 }
 .container {
     display: inline-block;
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
 }
 </style>

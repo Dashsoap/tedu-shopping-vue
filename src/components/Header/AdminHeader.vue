@@ -11,14 +11,7 @@
 </template>
 
 <script>
-import UserInfo from "./UserInfo";
-import Cart from "./Cart.vue";
-
 export default {
-    components: {
-        UserInfo,
-        Cart
-    },
     data() {
         return {};
     },
