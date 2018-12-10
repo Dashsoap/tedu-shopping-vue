@@ -40,6 +40,28 @@ const router = new VueRouter({
 					'ADMIN',
 				],
 			},
+			children: [
+				{
+					path: '/admin/user',
+					name: 'admin-user',
+					component: () => import('./pages/Admin/User/User.vue'),
+					meta: {
+						roles: [
+							'ADMIN',
+						],
+					},
+				},
+				{
+					path: '/admin/goods',
+					name: 'admin-goods',
+					component: () => import('./pages/Admin/Goods/Goods.vue'),
+					meta: {
+						roles: [
+							'ADMIN',
+						],
+					},
+				},
+			],
 		},
 		{
 			path: '*',

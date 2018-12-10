@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <admin-header></admin-header>
         <my-header class="header"></my-header>
         <router-view class="my-body"></router-view>
         <vue-progress-bar></vue-progress-bar>
@@ -8,10 +9,12 @@
 
 <script>
 import MyHeader from "./components/Header/Header";
+import AdminHeader from "./components/Header/AdminHeader";
 export default {
     name: "app",
     components: {
-        MyHeader
+        MyHeader,
+        AdminHeader
     },
     beforeCreate() {
         this.$store.dispatch("login");
