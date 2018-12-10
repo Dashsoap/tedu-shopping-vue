@@ -1,30 +1,41 @@
 <template>
-    <div class="container">
-        <img src="@/assets/index-logo.svg">
-        <h1>欢迎加入膜法世界</h1>
-        <span>创建你自己的小马甲</span>
-        <el-card class="mt-2">
-            <my-form @submit="onSubmit" :loading="loading>0"></my-form>
-        </el-card>
-    </div>
+    <el-form ref="form" :model="form" :rules="rules" hide-required-asterisk>
+        <el-form-item prop="username" label="用户名">
+            <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
+        </el-form-item>
+        <el-form-item prop="password" label="请输入密码">
+            <el-input type="password" v-model="form.password" placeholder="请输入密码"></el-input>
+        </el-form-item>
+        <!-- <el-form-item prop="email">
+          <el-input v-model="form.email" placeholder="请输入邮箱地址"></el-input>
+        </el-form-item>-->
+        <el-form-item prop="checkPassword" label="请再次输入密码">
+            <el-input type="password" v-model="form.checkPassword" placeholder="请输入密码"></el-input>
+        </el-form-item>
+        <el-button :loading="loading>0" type="primary" round @click="onSubmit">{{submitText}}</el-button>
+    </el-form>
 </template>
 
 <script>
-import Axios from "axios";
-import myForm from "./Form";
 export default {
-    components: {
-        myForm
+    props: {
+        submitText: {
+            type: String,
+            default: "挥动魔杖"
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
     },
     methods: {
         /** 用户点击注册按钮 */
-        async onSubmit(form) {
-            this.loading++;
-            // 得到的返回数据
-            const res = await Axios.post("/api/user", form);
-            this.$message.success(`用户: ${res.data.username}注册成功!`);
-            this.$router.push("/login");
-            this.loading--;
+        onSubmit() {
+            this.$refs.form.validate(async res => {
+                if (res) {
+                    this.$emit("submit", this.form);
+                }
+            });
         }
     },
     data() {
@@ -39,7 +50,6 @@ export default {
         };
 
         return {
-            loading: 0,
             form: {
                 username: "",
                 password: "",
@@ -90,29 +100,5 @@ export default {
 };
 </script>
 
- <style lang="stylus"
- scoped>
- .el-card {
-     min-width: 300px;
- }
-
- .el-form {
-     .el-button {
-         display: block;
-         margin: auto;
-         width: 50%;
-     }
- }
-
- .container {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
- }
-
- img {
-     width: 3rem;
-     height: auto;
-     margin-top: 30px;
- }
+<style scoped>
 </style>
