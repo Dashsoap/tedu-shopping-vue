@@ -18,7 +18,7 @@ const router = new VueRouter({
 		},
 		{
 			path: '/register',
-            name: 'register',
+			name: 'register',
 			component: () => import('./pages/Register/Register.vue'),
 		},
 		{
@@ -26,7 +26,19 @@ const router = new VueRouter({
 			name: 'address',
 			component: () => import('./pages/Address/Address.vue'),
 			meta: {
-				auth: true,
+				roles: [
+					'NORMAL',
+				],
+			},
+		},
+		{
+			path: '/admin',
+			name: 'admin',
+			component: () => import('./pages/Admin/Admin.vue'),
+			meta: {
+				roles: [
+					'ADMIN',
+				],
 			},
 		},
 		{

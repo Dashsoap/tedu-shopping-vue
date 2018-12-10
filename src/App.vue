@@ -15,15 +15,16 @@ export default {
     },
     beforeCreate() {
         this.$store.dispatch("login");
-        document.title = '膜法商城'
+        document.title = "膜法商城";
         this.$router.beforeEach((to, from, next) => {
             //  does the page we want to go to have a meta.progress object
             //  start the progress bar
             this.$Progress.start();
 
             /** 判断路由是否需要鉴权 */
-            if (to.meta.auth) {
-                if (!this.$store.state.me) {
+            const { me } = this.$store.state;
+            if (to.meta.roles) {
+                if (!me) {
                     next({
                         path: "login",
                         query: {
@@ -31,6 +32,11 @@ export default {
                         }
                     });
                     this.$Progress.finish();
+                } else if (
+                    /** 用户没有权限访问该页面 */
+                    !to.meta.roles.some(item => me.roles.includes(item))
+                ) {
+                    next("/404");
                 } else {
                     next();
                 }
