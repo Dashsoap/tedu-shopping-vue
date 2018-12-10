@@ -35,6 +35,7 @@ const router = new VueRouter({
 			path: '/admin',
 			name: 'admin',
 			component: () => import('./pages/Admin/Admin.vue'),
+			redirect: '/admin/user',
 			meta: {
 				roles: [
 					'ADMIN',
