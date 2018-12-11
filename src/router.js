@@ -10,6 +10,11 @@ const router = new VueRouter({
 			path: '/',
 			name: 'index',
 			component: Index,
+			meta: {
+				roles: [
+					'NORMAL',
+				],
+			},
 		},
 		{
 			path: '/login',
@@ -20,6 +25,11 @@ const router = new VueRouter({
 			path: '/register',
 			name: 'register',
 			component: () => import('./pages/Register/Register.vue'),
+			meta: {
+				roles: [
+					'NORMAL',
+				],
+			},
 		},
 		{
 			path: '/address',
