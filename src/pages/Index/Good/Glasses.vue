@@ -1,7 +1,7 @@
 <template>
-    <el-row type="flex" class="container" :gutter="30">
+    <el-row type="flex" class="container" :gutter="30" v-if="src">
         <el-col :span="12" class="left">
-            <img src="@/assets/glasses.jpg">
+            <img :src="src.img">
         </el-col>
         <el-col :span="12" class="right">
             <div class="title">
@@ -10,10 +10,10 @@
             </div>
 
             <div class="bottom">
-                <h2>经典黑框复刻</h2>
+                <h2>{{src.name}}</h2>
                 <div>
-                    <add-cart-button></add-cart-button>
-                    <span>￥92</span>
+                    <add-cart-button :good_id="src._id"></add-cart-button>
+                    <span>￥{{src.price}}</span>
                 </div>
             </div>
         </el-col>
@@ -25,6 +25,16 @@ import AddCartButton from "../AddCartButton";
 export default {
     components: {
         AddCartButton
+    },
+    async beforeMount() {
+        const { data } = await this.$axios.get(`/api/goods/${this.id}`);
+        this.src = data;
+    },
+    data() {
+        return {
+            id: "5c0f9a0aaf6b625940e2681f",
+            src: null
+        };
     }
 };
 </script>

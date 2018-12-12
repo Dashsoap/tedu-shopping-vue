@@ -39,7 +39,14 @@ export default {
     methods: {},
     computed: {
         isVisible() {
-            const nameList = ["login", "register", "404"];
+            const nameList = [
+                "login",
+                "register",
+                "404",
+                "admin",
+                "admin-user",
+                "admin-goods"
+            ];
             return !nameList.includes(this.$route.name);
         }
     }

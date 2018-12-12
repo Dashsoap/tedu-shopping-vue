@@ -10,6 +10,11 @@ const router = new VueRouter({
 			path: '/',
 			name: 'index',
 			component: Index,
+			meta: {
+				roles: [
+					'NORMAL',
+				],
+			},
 		},
 		{
 			path: '/login',
@@ -18,16 +23,56 @@ const router = new VueRouter({
 		},
 		{
 			path: '/register',
-            name: 'register',
+			name: 'register',
 			component: () => import('./pages/Register/Register.vue'),
+			meta: {
+				roles: [
+					'NORMAL',
+				],
+			},
 		},
 		{
 			path: '/address',
 			name: 'address',
 			component: () => import('./pages/Address/Address.vue'),
 			meta: {
-				auth: true,
+				roles: [
+					'NORMAL',
+				],
 			},
+		},
+		{
+			path: '/admin',
+			name: 'admin',
+			component: () => import('./pages/Admin/Admin.vue'),
+			redirect: '/admin/user',
+			meta: {
+				roles: [
+					'ADMIN',
+				],
+			},
+			children: [
+				{
+					path: '/admin/user',
+					name: 'admin-user',
+					component: () => import('./pages/Admin/User/User.vue'),
+					meta: {
+						roles: [
+							'ADMIN',
+						],
+					},
+				},
+				{
+					path: '/admin/goods',
+					name: 'admin-goods',
+					component: () => import('./pages/Admin/Goods/Goods.vue'),
+					meta: {
+						roles: [
+							'ADMIN',
+						],
+					},
+				},
+			],
 		},
 		{
 			path: '*',

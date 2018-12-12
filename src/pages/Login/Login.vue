@@ -82,14 +82,17 @@ export default {
                     /** 将token存入cookie内 */
                     Cookie.set("token", data.token);
                     await this.$store.dispatch("login");
-                    this.$router.push(this.$route.query.next || "/");
+                    const { roles } = this.$store.state.me;
+                    let next =
+                        roles && roles.includes("ADMIN") ? "/admin" : "/";
+                    this.$router.push(this.$route.query.next || next);
                     this.loading--;
                 }
             });
         }
     },
-    beforeCreate(){
-        document.title = '登录 | 膜法商城'
+    beforeCreate() {
+        document.title = "登录 | 膜法商城";
     }
 };
 </script>

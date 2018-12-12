@@ -1,12 +1,27 @@
 <template>
-    <div class="add-cart-button" @click="onClick">添加至购物车</div>
+    <div class="add-cart-button" :loading="loading>0" @click="onClick">添加至购物车</div>
 </template>
 
 <script>
 export default {
+    props: {
+        good_id: {
+            required: true
+        }
+    },
+    data() {
+        return {
+            loading: 0
+        };
+    },
     methods: {
-        onClick(e) {
-            this.$emit("click", e);
+        async onClick() {
+            this.loading++;
+            await this.$store.dispatch("setCarts", {
+                good_id: this.good_id
+            });
+            this.$message.success("添加成功");
+            this.loading--;
         }
     }
 };
