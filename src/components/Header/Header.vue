@@ -55,6 +55,11 @@ export default {
 
 <style scoped>
 nav {
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
     height: 4rem;
     display: flex;
     align-items: center;

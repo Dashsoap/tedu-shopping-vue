@@ -1,5 +1,10 @@
 <template>
-    <div class="add-cart-button" :loading="loading>0" @click="onClick">添加至购物车</div>
+    <div
+        class="add-cart-button"
+        :style="{borderColor:color,color}"
+        v-loading="loading>0"
+        @click="onClick"
+    >添加至购物车</div>
 </template>
 
 <script>
@@ -7,6 +12,9 @@ export default {
     props: {
         good_id: {
             required: true
+        },
+        color: {
+            default: "#000"
         }
     },
     data() {

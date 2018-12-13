@@ -9,7 +9,7 @@
                     type="flex"
                     :gutter="20"
                 >
-                    <el-col :span="6">
+                    <el-col v-response :span="6">
                         <img :src="item.good.img">
                     </el-col>
                     <el-col :span="12" class="column">
