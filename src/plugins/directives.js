@@ -5,4 +5,8 @@ Vue.directive('response', {
 		let finalRate = arg || 16 / 9;
 		el.style.height = `${Math.round(el.clientWidth / finalRate)}px`;
 	},
+	update: (el, { arg }) => {
+		let finalRate = arg || 16 / 9;
+		el.style.height = `${Math.round(el.clientWidth / finalRate)}px`;
+	},
 });
